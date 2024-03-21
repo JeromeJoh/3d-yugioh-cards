@@ -112,6 +112,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      background: repeating-conic-gradient(#06121d, #0a1e2f, transparent 3deg);
       /* background: repeating-conic-gradient(#06121d, #0a1e2f, transparent 1deg); */
     }
 
@@ -120,7 +121,6 @@
       height: 6rem;
       position: absolute;
       top: 50%;
-      transform: translateY(-50%);
       border: none;
       border-radius: 50%;
       background-image: url(./images/logo.svg);
@@ -128,14 +128,17 @@
       cursor: pointer;
       /* animation: spin 4s linear 0s infinite; */
       transition: all .15s;
+      opacity: 0;
     }
 
     .left-toggle {
       left: 3rem;
+      transform: translateY(-50%) translateX(-100%);
     }
 
     .right-toggle {
       right: 3rem;
+      transform: translateY(-50%) translateX(100%);
     }
 
     .content .toggle:hover {
@@ -151,7 +154,6 @@
       to {
         transform: rotate(360deg);
       }
-
     }
 
     .container .toggle:hover {
@@ -168,6 +170,7 @@
       transform-style: preserve-3d;
       cursor: pointer;
       user-select: none;
+      transform: translateY(-100%);
     }
 
     .background {
@@ -301,6 +304,28 @@
     const menuToggle = [...document.querySelectorAll('.toggle')];
     const card = document.querySelector('.container');
 
+
+    // initial & reload animation
+    const initialAnimation = gsap.timeline({
+      defaults: {
+        duration: 1,
+        ease: 'power4.out'
+      }
+    });
+
+    initialAnimation
+      .to(card, {
+        y: 0
+      })
+      .to('.left-toggle', {
+        opacity: 1,
+        x: 0
+      }, '=')
+      .to('.right-toggle', {
+        opacity: 1,
+        x: 0
+      }, '=');
+
     // TODO: 打开其中一侧菜单，自动关闭另一侧
     // TODO: 和 menuTL 整合出一个 Config？
     const menuStatus = {
@@ -346,7 +371,8 @@
         y: 0
       }, '=')
       .to('.left-toggle', {
-        rotate: 90
+        rotate: 90,
+        scale: .8
       }, '<');
 
     const rightMenuTl = gsap.timeline({
@@ -372,7 +398,8 @@
         y: 0
       }, '=')
       .to('.right-toggle', {
-        rotate: -90
+        rotate: -90,
+        scale: .8
       }, '<');
 
     leftMenuTl.pause();
