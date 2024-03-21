@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300..900&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="https://icons.iconarchive.com/icons/pictogrammers/material/128/cards-playing-icon.png"
+    type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <title>Vol.1 No.4 - 「Magical Hats」</title>
+  <style>
+    :root {
+      font-family: 'Darker Grotesque', snas-serif;
+    }
+
+    a {
+      display: block;
+      text-decoration: none;
+      color: #fff;
+      font-size: 1.8rem;
+      transition: color 0.3s;
+      font-weight: 400;
+    }
+
+    a::selection {
+      color: #d32297;
+      background-color: #68c40c;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+      background-color: #0a1e2f;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      height: 100%;
+    }
+
+    aside {
+      width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      color: aliceblue;
+      /* background: #fff repeating-linear-gradient(to bottom, black, black 4px, #123 0, #123 6px); */
+    }
+
+    .left-aside {
+      background-image: linear-gradient(to right, #06121d, transparent);
+
+    }
+
+    .right-aside {
+      background-image: linear-gradient(to left, #06121d, transparent);
+
+    }
+
+    aside nav {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: start;
+    }
+
+    aside li {
+      width: fit-content;
+      list-style: none;
+      color: white;
+    }
+
+    .left-aside li {
+      transform: translateX(-300%);
+    }
+
+    .right-aside li {
+      transform: translateX(300%);
+    }
+
+    aside li .title {
+      height: 2rem;
+      overflow: hidden;
+    }
+
+    nav>li+li {
+      margin-top: 2rem;
+    }
+
+    .line {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-image: linear-gradient(to right, #68c40c, #d32297, #c6c82b);
+      transform: scaleX(0);
+      transform-origin: 0;
+    }
+
+    .content {
+      position: relative;
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: repeating-conic-gradient(#06121d, #0a1e2f, transparent 3deg);
+      /* background: repeating-conic-gradient(#06121d, #0a1e2f, transparent 1deg); */
+    }
+
+    .content .toggle {
+      width: 6rem;
+      height: 6rem;
+      position: absolute;
+      top: 50%;
+      border: none;
+      border-radius: 50%;
+      background-image: url(./images/logo.svg);
+      background-color: transparent;
+      cursor: pointer;
+      /* animation: spin 4s linear 0s infinite; */
+      transition: all .15s;
+    }
+
+    .left-toggle {
+      left: 3rem;
+      transform: translateY(-50%) translateX(-100%);
+    }
+
+    .right-toggle {
+      right: 3rem;
+      transform: translateY(-50%) translateX(100%);
+    }
+
+    .content .toggle:hover {
+      box-shadow: 0 0 1rem rgba(255, 255, 255, .8) inset;
+      filter: brightness(1.5);
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+
+    }
+
+    .container .toggle:hover {
+      background-color: #c6c82b;
+    }
+
+    .container {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: 20rem;
+      height: 30rem;
+      background-color: gray;
+      transform-style: preserve-3d;
+      cursor: pointer;
+      user-select: none;
+      transform: translateY(-100%);
+    }
+
+    .background {
+      object-fit: fit;
+      z-index: -1;
+      transform: translateZ(-10px) translateX(-50%) translateY(-50%);
+    }
+
+    .layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .layer-1 {
+      transform: translateZ(6px);
+    }
+
+    .layer-2 {
+      transform: translateZ(10px);
+    }
+
+    .layer-3 {
+      transform: translateZ(16px);
+    }
+
+    .layer-4 {
+      transform: translateZ(24px);
+    }
+
+    .pedestal {
+      position: absolute;
+      bottom: 0;
+      transform: translateY(100%);
+      height: 32%;
+      user-select: none;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <aside class="left-aside">
+      <nav>
+        <li>
+          <a href="http://localhost:5500/index.html">
+            <div class="title">
+              <p class="primary">Harpie's Feather Duster</p>
+              <p class="secondary">Harpie's Feather Duster</p>
+            </div>
+            <p class="line"></p>
+          </a>
+
+        </li>
+        <li>
+          <a href="http://localhost:5500/vol1-02.html">
+            <div class="title">
+              <p class="primary">Cyber Shield</p>
+              <p class="secondary">Cyber Shield</p>
+            </div>
+            <p class="line"></p>
+          </a>
+
+        </li>
+        <li>
+          <a href="http://localhost:5500/vol1-03.html">
+            <div class="title">
+              <p class="primary">Harpie's Hunting Ground</p>
+              <p class="secondary">Harpie's Hunting Ground</p>
+            </div>
+            <p class="line"></p>
+          </a>
+        </li>
+        <li>
+          <a href="http://localhost:5500/vol1-04.html">
+            <div class="title">
+              <p class="primary">Magical Hats</p>
+              <p class="secondary">Magical Hats</p>
+            </div>
+            <p class="line"></p>
+          </a>
+        </li>
+      </nav>
+    </aside>
+    <div class="content">
+      <div class="container js-tilt" data-tilt>
+        <img src="./images/cards/vol1-04/origin.jpg" alt="" class="layer">
+        <img src="./images/cards/vol1-04/layer-1.png" alt="" class="layer-1 layer">
+        <img src="./images/cards/vol1-04/layer-2.png" alt="" class="layer-2 layer">
+        <img src="./images/cards/vol1-04/layer-3.png" alt="" class="layer-3 layer">
+        <img src="./images/cards/vol1-04/layer-4.png" alt="" class="layer-4 layer">
+      </div>
+      <img src="./images/pedestal.png" alt="" class="pedestal">
+      <button class="toggle left-toggle" onclick="toggleSidebar('l')">
+      </button>
+      <button class="toggle right-toggle" onclick="toggleSidebar('r')">
+      </button>
+    </div>
+    <aside class="right-aside">
+      <nav>
+        <li>
+          <a href="https://space.bilibili.com/358777336" target="_blank">
+            <div class="title">
+              <p class="primary">VI-IX's Bilibili</p>
+              <p class="secondary">VI-IX's Bilibili</p>
+            </div>
+            <p class="line"></p>
+          </a>
+        </li>
+        <li>
+          <a href="" target="_blank">
+            <div class="title">
+              <p class="primary">YGO Game Station</p>
+              <p class="secondary">YGO Game Station</p>
+            </div>
+            <p class="line"></p>
+          </a>
+
+        </li>
+        <li>
+          <a href="https://github.com/JeromeJoh/3d-yugioh-cards" target="_blank">
+            <div class="title">
+              <p class="primary">Git Repository</p>
+              <p class="secondary">Git Repository</p>
+            </div>
+            <p class="line"></p>
+          </a>
+        </li>
+      </nav>
+    </aside>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://unpkg.com/tilt.js@1.1.21/dest/tilt.jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+    integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    // Tilt.js Configuration
+    $('.js-tilt').tilt({
+      glare: true,
+      maxGlare: .5
+    });
+
+    // initial & reload animation
+    const card = document.querySelector('.container');
+
+    const initialAnimation = gsap.timeline({
+      defaults: {
+        duration: 1,
+        ease: 'power4.out'
+      }
+    });
+
+    initialAnimation
+      .to(card, {
+        y: 0
+      })
+      .to('.left-toggle', {
+        opacity: 1,
+        x: 0
+      }, '=')
+      .to('.right-toggle', {
+        opacity: 1,
+        x: 0
+      }, '=');
+
+
+
+    // Menu Toggle Functionality
+    // TODO: 打开其中一侧菜单，自动关闭另一侧
+    // TODO: 和 menuTL 整合出一个 Config？
+
+    const menuStatus = {
+      l: false,
+      r: false
+    }
+
+    const leftMenuTl = gsap.timeline({
+      defaults: {
+        duration: .6,
+        ease: 'power4.inOut'
+      }
+    });
+
+    leftMenuTl
+      .to('.left-aside', {
+        width: '30%',
+      })
+      .to('.left-aside li', {
+        x: 0,
+        stagger: .2
+      }, '=')
+      .to('.container', {
+        scale: 0.7,
+        y: '-10%'
+      }, '=')
+      .to('.pedestal', {
+        y: 0
+      }, '=')
+      .to('.left-toggle', {
+        rotate: 90,
+        scale: .8
+      }, '<');
+
+    const rightMenuTl = gsap.timeline({
+      defaults: {
+        duration: .6,
+        ease: 'power4.inOut'
+      }
+    });
+
+    rightMenuTl
+      .to('.right-aside', {
+        width: '30%',
+      })
+      .to('.right-aside li', {
+        x: 0,
+        stagger: .2
+      }, '=')
+      .to('.container', {
+        scale: 0.7,
+        y: '-10%'
+      }, '=')
+      .to('.pedestal', {
+        y: 0
+      }, '=')
+      .to('.right-toggle', {
+        rotate: -90,
+        scale: .8
+      }, '<');
+
+    leftMenuTl.pause();
+    rightMenuTl.pause();
+
+    const menuTl = {
+      l: leftMenuTl,
+      r: rightMenuTl
+    }
+
+    function toggleSidebar(leftOrRight) {
+      // TODO: relocate sidebar dom change
+      const currentMenuTl = menuTl[leftOrRight];
+
+      if (menuStatus[leftOrRight] === false) {
+        menuTl[leftOrRight].play();
+        card.style.pointerEvents = 'none';
+      } else {
+        menuTl[leftOrRight].reverse();
+        card.style.pointerEvents = 'auto';
+      }
+
+      menuStatus[leftOrRight] = !menuStatus[leftOrRight];
+    }
+
+
+    // Menu List Functionality
+    const links = gsap.utils.toArray('nav li');
+
+    links.forEach(link => {
+
+      const headingStart = link.querySelector('.primary');
+      const headingEnd = link.querySelector('.secondary');
+      const lineDash = link.querySelector('.line');
+
+      const linkTL = gsap.timeline(link, {
+        defaults: {
+          duration: .4,
+          ease: 'power4.inOut'
+        }
+      });
+
+      linkTL
+        .to(headingStart, {
+          yPercent: -100
+        })
+        .to(headingEnd, {
+          yPercent: -100
+        }, '<')
+        .to(lineDash, {
+          scaleX: 1
+        }, '<');
+
+      linkTL.pause();
+
+      link.addEventListener('mouseenter', () => {
+        linkTL.play();
+      });
+
+      link.addEventListener('mouseleave', () => {
+        linkTL.reverse();
+      });
+    });
+
+  </script>
+</body>
+
+</html>
