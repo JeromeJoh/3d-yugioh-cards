@@ -14,26 +14,29 @@ const init = () => {
 }
 
 function render(vol) {
-  let html = '';
+  // document.title = `${vol.theme} - 3D Yu-Gi-Oh! Cards`;
+
+  const cardList = document.querySelector('.card-list');
+
   // TODO: port to be a variable
-  vol.cards.forEach((card, index) => {
+  cardList.innerHTML = vol.cards.reduce((html, card, index) => {
     const filename = index === 0 ? 'index' : `vol${vol.number}-${((index + 1) + '').padStart(2, '0')}`;
+
     html += `
-      <li>
-        <a href="http://localhost:5500/${filename}.html">
-          <div class="title">
-            <p class="primary">${card}</p>
-            <p class="secondary">${card}</p>
-          </div>
-          <p class="line"></p>
-        </a>
-      </li>
-    `
-  });
-
-  // TODO: use Array.reduce?
-
-  document.querySelector('.card-list').innerHTML = html;
+    <li>
+      <a href="http://localhost:5500/${filename}.html">
+        <div class="title">
+          <p class="primary">${card}</p>
+          <p class="secondary">${card}</p>
+        </div>
+        <p class="line"></p>
+      </a>
+    </li>
+  `
+    return html;
+  }, `
+    <header class="left-header">Vol ${vol.number}. <em>${vol.theme}</em></header>
+  `);
 }
 
 function bindEvent() {
@@ -128,7 +131,7 @@ leftMenuTl
   .to('.left-aside', {
     width: '30%',
   })
-  .to('.left-aside li', {
+  .to(['.left-header', '.left-aside li'], {
     x: 0,
     stagger: .1
   }, '=')
@@ -141,8 +144,9 @@ leftMenuTl
   }, '=')
   .to('.left-toggle', {
     rotate: 90,
-    scale: .8
-  }, '<');
+    scale: .8,
+    ease: 'power3.out'
+  }, '=');
 
 const rightMenuTl = gsap.timeline({
   defaults: {
@@ -155,7 +159,7 @@ rightMenuTl
   .to('.right-aside', {
     width: '30%',
   })
-  .to('.right-aside li', {
+  .to(['.right-header', '.right-aside li'], {
     x: 0,
     stagger: .2
   }, '=')
@@ -168,7 +172,8 @@ rightMenuTl
   }, '=')
   .to('.right-toggle', {
     rotate: -90,
-    scale: .8
+    scale: .8,
+    ease: 'power3.out'
   }, '<');
 
 leftMenuTl.pause();
@@ -198,7 +203,7 @@ const menuController = {
 function toggleSidebar(leftOrRight) {
   const currentMenuTl = menuTl[leftOrRight];
 
-
+  // TODO: 打开一侧，自动关闭另一侧
 
   if (menuStatus[leftOrRight] === false) {
     menuTl[leftOrRight].play();

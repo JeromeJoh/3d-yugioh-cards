@@ -1,19 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+
 :root {
-  font-family: "Darker Grotesque", snas-serif;
+  font-family: "Markazi Text", snas-serif;
 }
 
 a {
   display: block;
   text-decoration: none;
   color: #fff;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   transition: color 0.3s;
   font-weight: 400;
 }
 
-a::selection {
-  color: #d32297;
-  background-color: #68c40c;
+.primary::first-letter,
+.secondary::first-letter {
+  font-size: 2rem;
 }
 
 body {
@@ -30,6 +33,23 @@ main {
   height: 100%;
 }
 
+header {
+  position: relative;
+  top: -3rem;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 2rem;
+  margin-bottom: 4rem;
+  text-shadow: 0 0 8px #fff;
+}
+
+.left-header {
+  transform: translateX(-100%);
+}
+
+.right-header {
+  transform: translateX(100%);
+}
+
 aside {
   width: 0;
   display: flex;
@@ -42,14 +62,16 @@ aside {
 }
 
 .left-aside {
-  background-image: linear-gradient(to right, #06121d, transparent);
+  background-image: linear-gradient(to right, #06121d, transparent 50%);
 }
 
 .right-aside {
-  background-image: linear-gradient(to left, #06121d, transparent);
+  background-image: linear-gradient(to left, #06121d, transparent 50%);
 }
 
 aside nav {
+  position: relative;
+  top: -3rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -128,6 +150,10 @@ nav > li + li {
 .content .toggle:hover {
   box-shadow: 0 0 1rem rgba(255, 255, 255, 0.8) inset;
   filter: brightness(1.5);
+}
+
+.content .toggle:active {
+  filter: brightness(0.8);
 }
 
 @keyframes spin {
