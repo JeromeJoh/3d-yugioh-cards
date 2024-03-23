@@ -9,3 +9,7 @@ export const vol1 = {
     "Cyber Slash Harpie Lady",
   ]
 }
+
+// TODO: next vol ground spell
+// TODO: next vol Weahter
+// TODO: next vol hand traps
