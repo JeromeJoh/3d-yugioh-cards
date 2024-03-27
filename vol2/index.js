@@ -10,4 +10,4 @@ function raf(time) {
 requestAnimationFrame(raf);
 
 
-// 
+// initialize page
