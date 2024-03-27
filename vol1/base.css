@@ -129,7 +129,7 @@ nav > li + li {
   top: 50%;
   border: none;
   border-radius: 50%;
-  background-image: url(./images/logo.svg);
+  background-image: url(/images/logo.svg);
   background-color: transparent;
   cursor: pointer;
   /* animation: spin 4s linear 0s infinite; */

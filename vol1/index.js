@@ -6,7 +6,7 @@ $('.js-tilt').tilt({
 
 
 // initialization
-import { vol1 } from './data.js';
+import { vol1 } from '/data.js';
 
 const init = () => {
   render(vol1);
@@ -20,11 +20,11 @@ function render(vol) {
 
   // TODO: port to be a variable
   cardList.innerHTML = vol.cards.reduce((html, card, index) => {
-    const filename = index === 0 ? 'index' : `vol${vol.number}-${((index + 1) + '').padStart(2, '0')}`;
+    const filename = `vol${vol.number}-${((index + 1) + '').padStart(2, '0')}`;
 
     html += `
     <li>
-      <a href="http://localhost:5500/${filename}.html">
+      <a href="./${filename}.html">
         <div class="title">
           <p class="primary">${card}</p>
           <p class="secondary">${card}</p>

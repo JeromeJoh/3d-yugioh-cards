@@ -8,22 +8,14 @@
     type="image/x-icon">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
   <link rel="stylesheet" href="./base.css">
-  <title>Vol.1 No.4 - 「Magical Hats」</title>
+  <title>Document</title>
   <style>
-    .layer-1 {
-      transform: translateZ(6px);
+    .container .layer-1 {
+      transform: translateZ(12px);
     }
 
-    .layer-2 {
-      transform: translateZ(10px);
-    }
-
-    .layer-3 {
+    .container .layer-2 {
       transform: translateZ(16px);
-    }
-
-    .layer-4 {
-      transform: translateZ(24px);
     }
   </style>
 </head>
@@ -36,16 +28,14 @@
     </aside>
     <div class="content">
       <div class="container js-tilt" data-tilt>
-        <img src="./images/cards/vol1-04/origin.jpg" alt="" class="layer">
-        <img src="./images/cards/vol1-04/layer-1.png" alt="" class="layer-1 layer">
-        <img src="./images/cards/vol1-04/layer-2.png" alt="" class="layer-2 layer">
-        <img src="./images/cards/vol1-04/layer-3.png" alt="" class="layer-3 layer">
-        <img src="./images/cards/vol1-04/layer-4.png" alt="" class="layer-4 layer">
+        <img src="./layers/vol1-01/origin.jpg" alt="" class="layer">
+        <img src="./layers/vol1-01/layer-1.png" alt="" class="layer-1 layer">
+        <img src="./layers/vol1-01/layer-2.png" alt="" class="layer-2 layer">
       </div>
-      <img src="./images/pedestal.png" alt="" class="pedestal">
-      <button class="toggle left-toggle" onclick="toggleSidebar('l')">
+      <img src="/images/pedestal.png" alt="" class="pedestal">
+      <button class="toggle left-toggle">
       </button>
-      <button class="toggle right-toggle" onclick="toggleSidebar('r')">
+      <button class="toggle right-toggle">
       </button>
     </div>
     <aside class="right-aside">

@@ -4,16 +4,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="https://icons.iconarchive.com/icons/pictogrammers/material/128/cards-playing-icon.png"
+    type="image/x-icon">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
   <link rel="stylesheet" href="./base.css">
-  <title>Document</title>
+  <title>Vol.1 No.5 - 「Cyber Slash Harpie Lady」</title>
   <style>
-    .container .layer-1 {
+    .layer-1 {
+      transform: translateZ(6px);
+    }
+
+    .layer-2 {
+      transform: translateZ(10px);
+    }
+
+    .layer-3 {
+      transform: translateZ(16px);
+    }
+
+    .layer-4 {
+      transform: translateZ(20px);
+    }
+
+    .layer-5 {
+      transform: translateZ(26px);
+    }
+
+    .layer-6 {
+      transform: translateZ(30px);
+    }
+
+    .layer-7 {
       transform: translateZ(12px);
     }
 
-    .container .layer-2 {
-      transform: translateZ(16px);
+    .layer-8 {
+      transform: translateZ(20px);
+    }
+
+    .layer-9 {
+      transform: translateZ(4px);
     }
   </style>
 </head>
@@ -26,14 +56,21 @@
     </aside>
     <div class="content">
       <div class="container js-tilt" data-tilt>
-        <img src="./images/cards/vol1-01/origin.jpg" alt="" class="layer">
-        <img src="./images/cards/vol1-01/layer-1.png" alt="" class="layer-1 layer">
-        <img src="./images/cards/vol1-01/layer-2.png" alt="" class="layer-2 layer">
+        <img src="./layers/vol1-05/origin.jpg" alt="" class="layer">
+        <img src="./layers/vol1-05/layer-1.png" alt="" class="layer-1 layer">
+        <img src="./layers/vol1-05/layer-2.png" alt="" class="layer-2 layer">
+        <img src="./layers/vol1-05/layer-3.png" alt="" class="layer-3 layer">
+        <img src="./layers/vol1-05/layer-4.png" alt="" class="layer-4 layer">
+        <img src="./layers/vol1-05/layer-5.png" alt="" class="layer-5 layer">
+        <img src="./layers/vol1-05/layer-6.png" alt="" class="layer-6 layer">
+        <img src="./layers/vol1-05/layer-7.png" alt="" class="layer-7 layer">
+        <img src="./layers/vol1-05/layer-8.png" alt="" class="layer-8 layer">
+        <img src="./layers/vol1-05/layer-9.png" alt="" class="layer-9 layer">
       </div>
-      <img src="./images/pedestal.png" alt="" class="pedestal">
-      <button class="toggle left-toggle">
+      <img src="/images/pedestal.png" alt="" class="pedestal">
+      <button class="toggle left-toggle" onclick="toggleSidebar('l')">
       </button>
-      <button class="toggle right-toggle">
+      <button class="toggle right-toggle" onclick="toggleSidebar('r')">
       </button>
     </div>
     <aside class="right-aside">

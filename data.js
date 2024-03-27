@@ -10,6 +10,17 @@ export const vol1 = {
   ]
 }
 
+export const vol2 = {
+  number: 2,
+  theme: "Plant Princess",
+  cards: [
+    "Tytannial, Princess of Camellias",
+    "Talaya, Princess of Cherry Blossoms",
+    "Malina, Princess of Sunflowers",
+    "Chirubimé,Princess of Autumn Leaves",
+  ]
+}
+
 // TODO: next vol ground spell
 // TODO: next vol Weahter
 // TODO: next vol hand traps
