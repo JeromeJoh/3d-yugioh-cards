@@ -10,7 +10,7 @@ body {
   height: 100vh;
   font-family: "Josefin Sans", snas-serif;
   background-color: #ffe3e0;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .logo h1 {
@@ -28,13 +28,48 @@ body {
 }
 
 .slider {
-  width: 300vw;
+  width: 400vw;
   display: flex;
 }
 
+section:nth-child(1) {
+  background-color: #607444;
+}
+
+section:nth-child(2) {
+  background-color: #5c6583;
+}
+
+section:nth-child(3) {
+  background-color: #d1d1dd;
+}
+
+section:nth-child(4) {
+  background-color: #d9b200;
+}
+
+section:nth-child(1) .right-col {
+  background-color: #9d0c17;
+}
+
+section:nth-child(2) .right-col {
+  background-color: #dab0c6;
+}
+
+section:nth-child(3) .right-col {
+  background-color: #f6b929;
+}
+
+section:nth-child(4) .right-col {
+  background-color: #df3a38;
+}
+
 section {
+  flex: 1;
+  position: relative;
   width: 100vw;
   display: flex;
+  font-family: "Markazi Text", serif;
 }
 
 section main {
@@ -47,25 +82,29 @@ section main {
 
 section main h1 {
   font-size: clamp(0.85rem, 1.5vw, 1rem);
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
 }
 
 section main p {
   width: 70%;
   font-size: clamp(0.85rem, 1.5vw, 0.95rem);
-  line-height: 2rem;
+  line-height: 1.8rem;
+  font-size: 1rem;
 }
 
 .right-col {
+  flex: 0.6;
   width: 100%;
   height: 100vh;
-  background-color: #ffe3e0;
 }
 
 .card {
   position: absolute;
   top: 50%;
-  right: 10%;
+  right: 20%;
   transform: translateY(-50%);
+  z-index: 10;
 }
 
 .card .container {
@@ -88,17 +127,18 @@ section main p {
 }
 
 .progress {
-  height: 4px;
-  width: 30%;
   position: fixed;
+  height: 2px;
+  width: 30%;
+  z-index: 1000;
   left: 8rem;
   bottom: 8rem;
-  background-color: lime;
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
 .progress .inner {
   height: 100%;
-  background: crismon;
+  background-color: rgba(0, 0, 0, 0.7);
   transform-origin: left;
   transform: scaleX(0);
 }
