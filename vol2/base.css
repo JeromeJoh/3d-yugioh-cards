@@ -41,7 +41,7 @@ section:nth-child(2) {
 }
 
 section:nth-child(3) {
-  background-color: #d1d1dd;
+  background-color: #4f78c8;
 }
 
 section:nth-child(4) {
@@ -57,7 +57,7 @@ section:nth-child(2) .right-col {
 }
 
 section:nth-child(3) .right-col {
-  background-color: #f6b929;
+  background-color: #fde457;
 }
 
 section:nth-child(4) .right-col {
@@ -141,4 +141,166 @@ section main p {
   background-color: rgba(0, 0, 0, 0.7);
   transform-origin: left;
   transform: scaleX(0);
+}
+
+.card-1 .layer-1 {
+  transform: translateZ(4px);
+}
+
+.card-1 .layer-2 {
+  transform: translateZ(17px);
+}
+
+.card-1 .layer-3 {
+  transform: translateZ(8px);
+}
+
+.card-1 .layer-4 {
+  transform: translateZ(10px);
+}
+
+.card-1 .layer-5 {
+  transform: translateZ(12px);
+}
+.card-1 .layer-6 {
+  transform: translateZ(14px);
+}
+
+.card-1 .layer-7 {
+  transform: translateZ(16px);
+}
+
+.card-1 .layer-8 {
+  transform: translateZ(18px);
+}
+
+.card-1 .layer-9 {
+  transform: translateZ(20px);
+}
+
+.card-1 .layer-10 {
+  transform: translateZ(12px);
+}
+
+.card-1 .layer-11 {
+  transform: translateZ(8px);
+}
+
+.card-1 .layer-12 {
+  transform: translateZ(10px);
+}
+
+.card-1 .bg-1 {
+  transform: translateZ(10px);
+}
+
+.card-1 .bg-2 {
+  transform: translateZ(20px);
+}
+
+.card-2 .layer-1 {
+  transform: translateZ(4px);
+}
+
+.card-2 .layer-2 {
+  transform: translateZ(16px);
+}
+
+.card-2 .layer-3 {
+  transform: translateZ(12px);
+}
+
+.card-2 .layer-4 {
+  transform: translateZ(16px);
+}
+
+.card-2 .layer-5 {
+  transform: translateZ(12px);
+}
+
+.card-2 .layer-6 {
+  transform: translateZ(14px);
+}
+
+.card-2 .layer-7 {
+  transform: translateZ(20px);
+}
+
+.card-2 .bg-1 {
+  transform: translateZ(10px);
+}
+
+.card-2 .bg-2 {
+  transform: translateZ(20px);
+}
+
+.card-3 .layer-1 {
+  transform: translateZ(4px);
+}
+.card-3 .layer-2 {
+  transform: translateZ(10px);
+}
+
+.card-3 .layer-3 {
+  transform: translateZ(14px);
+}
+
+.card-3 .layer-4 {
+  transform: translateZ(18px);
+}
+
+.card-3 .layer-5 {
+  transform: translateZ(6px);
+}
+
+.card-3 .layer-6 {
+  transform: translateZ(10px);
+}
+
+.card-3 .layer-7 {
+  transform: translateZ(16px);
+}
+
+.card-3 .layer-8 {
+  transform: translateZ(20px);
+}
+
+.card-3 .bg-1 {
+  transform: translateZ(10px);
+}
+
+.card-3 .bg-2 {
+  transform: translateZ(20px);
+}
+
+.card-4 .layer-1 {
+  transform: translateZ(4px);
+}
+
+.card-4 .layer-2 {
+  transform: translateZ(8px);
+}
+
+.card-4 .layer-3 {
+  transform: translateZ(12px);
+}
+
+.card-4 .layer-4 {
+  transform: translateZ(14px);
+}
+
+.card-4 .layer-5 {
+  transform: translateZ(16px);
+}
+
+.card-4 .layer-6 {
+  transform: translateZ(15px);
+}
+
+.card-4 .bg-1 {
+  transform: translateZ(10px);
+}
+
+.card-4 .bg-2 {
+  transform: translateZ(20px);
 }

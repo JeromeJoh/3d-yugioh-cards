@@ -1,5 +1,11 @@
-// smooth scroll
+// Tilt.js Configuration
+$('.js-tilt').tilt({
+  glare: true,
+  maxGlare: .5
+});
 
+
+// smooth scroll
 const lenis = new Lenis();
 
 function raf(time) {
@@ -62,7 +68,6 @@ sections.forEach((section, i) => {
   });
 
   const pragraph = new SplitType(section.querySelectorAll('p'));
-  console.log(pragraph.words);
 
   gsap.from(pragraph.words, {
     y: 40,
@@ -105,6 +110,17 @@ sections.forEach((section, i) => {
     scrollTrigger: {
       scrub: .25
     }
-  })
+  });
+
+  gsap.from(section.querySelector('.right-col'), {
+    yPercent: 50,
+    opacity: 0,
+    scrollTrigger: {
+      containerAnimation: scrollTween,
+      trigger: section,
+      start: 'left center',
+      toggleActions: 'play none none reverse'
+    }
+  });
 
 });
