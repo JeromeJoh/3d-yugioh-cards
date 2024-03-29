@@ -113,8 +113,9 @@ sections.forEach((section, i) => {
   });
 
   gsap.from(section.querySelector('.right-col'), {
-    yPercent: 50,
+    scaleY: 0,
     opacity: 0,
+    transformOrigin: 'bottom',
     scrollTrigger: {
       containerAnimation: scrollTween,
       trigger: section,
