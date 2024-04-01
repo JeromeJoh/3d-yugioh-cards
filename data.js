@@ -33,6 +33,21 @@ export const vol2 = {
   ]
 }
 
-// TODO: next vol ground spell
-// TODO: next vol Weahter
-// TODO: next vol hand traps
+export const vol3 = {
+  number: 3,
+  theme: "",
+  cards: [
+    {
+      name: "Dark Magician",
+      layers: 7
+    },
+    {
+      name: "Blue-Eyes White Dragon",
+      layers: 8
+    },
+    {
+      name: "Gyakutenno Megami",
+      layers: 8
+    }
+  ]
+}

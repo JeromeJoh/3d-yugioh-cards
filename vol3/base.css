@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: "Josefin Sans", snas-serif;
+  background-color: #c9aa6a;
+  overflow-x: hidden;
+}
+
+.logo h1 {
+  position: fixed;
+  margin: 8rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+  z-index: 1000;
+}
+
+.slider {
+  width: 300%;
+  display: flex;
+}
+
+section {
+  flex: 1;
+  position: relative;
+  width: 100vw;
+  display: flex;
+  font-family: "Markazi Text", serif;
+}
+
+section main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 8rem;
+  align-self: center;
+}
+
+section main h1 {
+  font-size: clamp(0.85rem, 1.5vw, 1rem);
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+}
+
+section main p {
+  width: 70%;
+  font-size: clamp(0.85rem, 1.5vw, 0.95rem);
+  line-height: 1.8rem;
+  font-size: 1rem;
+}
+
+.card {
+  position: absolute;
+  top: 50%;
+  right: 20%;
+  z-index: 10;
+}
+
+.card .container {
+  display: grid;
+  place-items: center;
+  width: 20rem;
+  height: 30rem;
+  background-color: gray;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  user-select: none;
+}
+
+.card .container .layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.card-1 .layer-1 {
+  transform: translateZ(4px);
+}
