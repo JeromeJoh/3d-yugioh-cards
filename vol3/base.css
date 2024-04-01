@@ -9,18 +9,26 @@ body {
   margin: 0;
   height: 100vh;
   font-family: "Josefin Sans", snas-serif;
-  background-color: #c9aa6a;
+  background-color: whitesmoke;
   overflow-x: hidden;
+  background-image: url(/images/background/rumble.png);
 }
 
-.logo h1 {
+.logo {
   position: fixed;
-  margin: 4rem;
-  font-size: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 2rem;
+  font-size: 1.2rem;
   font-weight: 700;
   text-decoration: none;
   text-transform: uppercase;
   z-index: 1000;
+  text-align: center;
+}
+
+.logo img {
+  height: 36px;
 }
 
 .slider {
@@ -29,7 +37,7 @@ body {
   display: flex;
 }
 
-section:nth-child(1) {
+/* section:nth-child(1) {
   background-color: #607444;
 }
 
@@ -39,6 +47,10 @@ section:nth-child(2) {
 
 section:nth-child(3) {
   background-color: #4f78c8;
+} */
+
+.mask {
+  overflow: hidden;
 }
 
 section {
@@ -73,7 +85,7 @@ section main p {
 .card {
   position: absolute;
   top: 50%;
-  right: 20%;
+  left: 10%;
   z-index: 10;
   transform: translateY(-50%);
 }
