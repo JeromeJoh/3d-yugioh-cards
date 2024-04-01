@@ -15,7 +15,7 @@ body {
 
 .logo h1 {
   position: fixed;
-  margin: 8rem;
+  margin: 4rem;
   font-size: 1.5rem;
   font-weight: 700;
   text-decoration: none;
@@ -25,7 +25,20 @@ body {
 
 .slider {
   width: 300%;
+  height: 100%;
   display: flex;
+}
+
+section:nth-child(1) {
+  background-color: #607444;
+}
+
+section:nth-child(2) {
+  background-color: #5c6583;
+}
+
+section:nth-child(3) {
+  background-color: #4f78c8;
 }
 
 section {
@@ -62,6 +75,7 @@ section main p {
   top: 50%;
   right: 20%;
   z-index: 10;
+  transform: translateY(-50%);
 }
 
 .card .container {
