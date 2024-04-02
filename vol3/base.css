@@ -14,25 +14,37 @@ body {
   background-image: url(/images/background/rumble.png);
 }
 
+.start,
+.end {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  font-weight: thin;
+  word-spacing: 0.5rem;
+}
+
 .logo {
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
   margin-top: 2rem;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: 700;
   text-decoration: none;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   z-index: 1000;
   text-align: center;
+  user-select: none;
 }
 
 .logo img {
-  height: 36px;
+  height: 4rem;
 }
 
 .slider {
-  width: 300%;
+  width: 500%;
   height: 100%;
   display: flex;
 }
@@ -59,6 +71,47 @@ section {
   width: 100vw;
   display: flex;
   font-family: "Markazi Text", serif;
+}
+
+section .big-picture {
+  position: relative;
+  height: 100vh;
+  width: 70%;
+  /* background-color: purple; */
+  align-self: end;
+  user-select: none;
+}
+
+section .big-picture .figure {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 90%;
+  z-index: 10;
+}
+
+section .big-picture .special {
+  height: 80%;
+  object-fit: cover;
+  transform: translate(-50%, -45%);
+}
+
+section .big-picture .bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 80%;
+  animation: spin 10s 0s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
 }
 
 section main {
@@ -110,5 +163,74 @@ section main p {
 }
 
 .card-1 .layer-1 {
-  transform: translateZ(4px);
+  transform: translateZ(10px);
+}
+.card-1 .layer-2 {
+  transform: translateZ(12px);
+}
+.card-1 .layer-3 {
+  transform: translateZ(16px);
+}
+.card-1 .layer-4 {
+  transform: translateZ(18px);
+}
+.card-1 .layer-5 {
+  transform: translateZ(22px);
+}
+.card-1 .layer-6 {
+  transform: translateZ(26px);
+}
+.card-1 .layer-7 {
+  transform: translateZ(30px);
+}
+
+.card-2 .layer-1 {
+  transform: translateZ(8px);
+}
+.card-2 .layer-2 {
+  transform: translateZ(10px);
+}
+.card-2 .layer-3 {
+  transform: translateZ(12px);
+}
+.card-2 .layer-4 {
+  transform: translateZ(14px);
+}
+.card-2 .layer-5 {
+  transform: translateZ(18px);
+}
+.card-2 .layer-6 {
+  transform: translateZ(22px);
+}
+.card-2 .layer-7 {
+  transform: translateZ(26px);
+}
+.card-2 .layer-8 {
+  transform: translateZ(30px);
+}
+
+.card-3 .layer-1 {
+  transform: translateZ(8px);
+}
+.card-3 .layer-2 {
+  transform: translateZ(10px);
+}
+.card-3 .layer-3 {
+  transform: translateZ(12px);
+}
+.card-3 .layer-4 {
+  transform: translateZ(14px);
+}
+.card-3 .layer-5 {
+  transform: translateZ(16px);
+}
+.card-3 .layer-6 {
+  transform: translateZ(20px);
+}
+.card-3 .layer-7 {
+  transform: translateZ(18px);
+}
+
+.card-3 .layer-8 {
+  transform: translateZ(19px);
 }

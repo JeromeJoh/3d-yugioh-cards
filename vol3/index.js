@@ -24,7 +24,24 @@ const init = () => {
 };
 
 function render(vol) {
+  const containers = document.querySelectorAll('.container');
 
+  vol.cards.forEach((card, index) => {
+    const fragmant = document.createDocumentFragment();
+    const origin = document.createElement('img');
+    origin.classList.add('layer');
+    origin.src = `./layers/vol3-0${index + 1}/origin.jpg`;
+    fragmant.appendChild(origin);
+
+
+    for (let i = 0; i < card.layers; i++) {
+      const layer = document.createElement('img');
+      layer.src = `./layers/vol3-0${index + 1}/layer-${i + 1}.png`;
+      layer.classList.add('layer', 'layer-' + (i + 1));
+      fragmant.appendChild(layer);
+    }
+    containers[index].appendChild(fragmant);
+  });
 }
 
 init();
@@ -38,84 +55,48 @@ gsap.registerPlugin(ScrollTrigger);
 const slider = document.querySelector('.slider');
 const sections = gsap.utils.toArray('.slider section');
 
-const scrollTween = gsap.to(sections, {
-  xPercent: -100 * (sections.length - 1),
-  ease: 'none',
+let tl = gsap.timeline({
+  defaults: {
+    ease: 'none'
+  },
   scrollTrigger: {
     trigger: slider,
     pin: true,
-    scrub: 1,
+    scrub: 2,
     snap: 1 / (sections.length - 1),
     end: () => `+=${slider.offsetWidth}`
   }
 });
 
-// sections.forEach((section, i) => {
-//   gsap.from(section.querySelector('h1'), {
-//     yPercent: 135,
-//     scrollTrigger: {
-//       containerAnimation: scrollTween,
-//       trigger: section.querySelector('h1'),
-//       start: 'left center',
-//       toggleActions: 'play none none reverse'
-//     }
-//   });
 
-//   const pragraph = new SplitType(section.querySelectorAll('p'));
+tl.to(sections, {
+  xPercent: -100 * (sections.length - 1),
+});
 
-//   gsap.from(pragraph.words, {
-//     y: 40,
-//     opacity: 0,
-//     skewX: 30,
-//     stagger: 0.03,
-//     scrollTrigger: {
-//       containerAnimation: scrollTween,
-//       trigger: section.querySelector('h1'),
-//       start: 'left center',
-//       toggleActions: 'play none none reverse'
-//     }
-//   });
+sections.forEach((stop, index) => {
+  if (index === 0 || index === sections.length - 1) {
+    return;
+  }
 
-
-//   gsap.from(section.querySelector('p'), {
-//     yPercent: 50,
-//     opacity: 0,
-//     scrollTrigger: {
-//       containerAnimation: scrollTween,
-//       trigger: section.querySelector('p'),
-//       start: 'left center',
-//       toggleActions: 'play none none reverse'
-//     }
-//   }, '<');
-
-//   gsap.from(section.querySelector('.card'), {
-//     y: 50,
-//     opacity: 0,
-//     scrollTrigger: {
-//       containerAnimation: scrollTween,
-//       trigger: section,
-//       start: 'left center',
-//       toggleActions: 'play none none reverse'
-//     }
-//   });
-
-//   gsap.to('.inner', {
-//     scaleX: 1,
-//     scrollTrigger: {
-//       scrub: .25
-//     }
-//   });
-
-//   gsap.from(section.querySelector('.right-col'), {
-//     scaleY: 0,
-//     opacity: 0,
-//     transformOrigin: 'bottom',
-//     scrollTrigger: {
-//       containerAnimation: scrollTween,
-//       trigger: section,
-//       start: 'left center',
-//       toggleActions: 'play none none reverse'
-//     }
-//   });
-
-// });
+  tl
+    .from(stop.querySelector('.card'), {
+      xPercent: 40,
+      yPercent: -20,
+      scrollTrigger: {
+        trigger: stop.querySelector('.card'),
+        scrub: 1,
+        containerAnimation: tl
+      }
+    })
+    .from(stop.querySelector('.big-picture'), {
+      xPercent: 40,
+      yPercent: -100,
+      opacity: 0,
+      ease: 'elastic.out(1,1)',
+      scrollTrigger: {
+        trigger: stop.querySelector('.big-picture'),
+        scrub: 1,
+        containerAnimation: tl
+      }
+    }, '<');
+});
