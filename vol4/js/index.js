@@ -6,6 +6,22 @@ const init = () => {
     document.querySelector("[data-debug]").classList.add("debug");
   }
 
+  entranceAnimation();
+
+  bindEvent();
+};
+
+const rouletteTween = gsap.to(".group", {
+  rotation: 360,
+  duration: 20,
+  repeat: -1,
+  ease: "none",
+  paused: true
+});
+
+rouletteTween.delay(1);
+
+function entranceAnimation() {
   const breakPoint = "53em";
   const mm = gsap.matchMedia();
 
@@ -40,7 +56,6 @@ const init = () => {
           transformOrigin: `center ${radius1 + image.clientHeight / 2}px`,
         })
         .set(".group", {
-          // https://developer.mozilla.org/en-US/docs/Web/CSS/transform-style
           transformStyle: "preserve-3d",
         })
         .to(cardList, {
@@ -92,40 +107,53 @@ const init = () => {
             opacity: 0,
             filter: "blur(60px)",
             duration: 1,
+            onComplete: () => rouletteTween.play()
           },
           "<"
-        )
-        .to(cardList, {
-          repeat: -1,
-          duration: 2,
-          onRepeat: () => {
-            gsap.to(cardList[Math.floor(Math.random() * count)], {
-              rotateY: "+=180",
-            });
-          },
-        })
-        .to(
-          ".group",
-          {
-            rotation: 360,
-            duration: 20,
-            repeat: -1,
-            ease: "none",
-          },
-          "<-=2"
         );
 
       return () => { };
     }
   );
-};
+}
 
 function bindEvent() {
   const cardList = gsap.utils.toArray(".card");
 
-  cardList.forEach((card) => {
+  cardList.forEach((card, index) => {
+    let isZoomed = false;
 
-  })
+    const zoomTl = gsap.timeline({
+      paused: true,
+    });
+
+    zoomTl
+      .to('.group', {
+        rotation: 360 - (index + 1) * 45,
+        y: 420,
+      })
+      .to(card, {
+        rotateY: -180,
+        scale: 2.5,
+        onComplete: () => {
+          rouletteTween.pause();
+        },
+        onReverseComplete: () => {
+          rouletteTween.play();
+        }
+      }, '<');
+
+
+    card.addEventListener("click", () => {
+
+      if (!isZoomed) {
+        zoomTl.play();
+      } else {
+        zoomTl.reverse();
+      }
+      isZoomed = !isZoomed;
+    })
+  });
 }
 
 preloadImages(".card__img").then(() => {
