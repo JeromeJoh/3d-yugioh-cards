@@ -10,7 +10,7 @@
   font-size: 16px;
   --color-text: #111;
   --color-bg: #e3efed;
-  --color-bg-alt: #8ca9af;
+  --color-bg-alt: #decade;
   --color-link: rgba(0, 0, 0, 0.6);
   --color-link-hover: #000;
   --page-padding: 1.5rem;
@@ -21,13 +21,13 @@ body {
   margin: 0;
   color: var(--color-text);
   background-color: var(--color-bg);
-  font-family: "Josefin Sans", sans-serif;
+  font-family: "Gloock", serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;
   height: 100vh;
   background: url(/images/background/noise.png),
-    radial-gradient(circle, var(--color-bg) 0%, var(--color-bg-alt) 100%);
+    radial-gradient(circle, red, orange, yellow, white 12%, #e3efed 100%);
   background-size: 150px, 100% 100vh;
 }
 
@@ -179,10 +179,12 @@ a:focus-visible {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 30%;
+  max-width: 50%;
+  max-height: 70%;
 }
 
 .headings {
+  position: relative;
   text-align: center;
   position: relative;
   z-index: 10;
@@ -196,7 +198,11 @@ a:focus-visible {
   font-size: clamp(2.5rem, 1.5rem + 3.5vw, 6.25rem);
 }
 
-.headings_subtitle {
+.headings__subtitle {
+  position: absolute;
+  left: 50%;
+  top: -20%;
+  transform: translateX(-50%);
   line-height: 0.5;
   font-size: clamp(1rem, 0.757rem + 1.036vw, 2rem);
 }
@@ -262,4 +268,32 @@ a:focus-visible {
 .logo img {
   width: 7rem;
   opacity: 0.8;
+}
+
+.logo h1 {
+  font-size: 0.8rem;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.caption {
+  position: fixed;
+  top: -10%;
+  left: 50%;
+  z-index: 1000;
+  text-align: center;
+  font-size: 2rem;
+  user-select: none;
+  transform: translate(-50%, 0);
+  opacity: 0;
+}
+
+.color-block {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  z-index: 100;
+  opacity: 0;
 }

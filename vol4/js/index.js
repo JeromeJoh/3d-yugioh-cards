@@ -117,6 +117,8 @@ function entranceAnimation() {
   );
 }
 
+import { vol4 } from "/data.js";
+
 function bindEvent() {
   let currentCardIdx = null;
 
@@ -124,7 +126,7 @@ function bindEvent() {
 
   cardList.forEach((card, index) => {
 
-    const layers = gsap.utils.toArray('.wrapper img');
+    const layers = gsap.utils.toArray(`.wrapper .card-${index + 1}`);
 
     let isZoomed = false;
 
@@ -140,6 +142,7 @@ function bindEvent() {
       .to(card, {
         rotateY: -180,
         scale: 2.4,
+        zIndex: 2000,
         onComplete: () => {
           rouletteTween.pause();
         },
@@ -152,49 +155,48 @@ function bindEvent() {
         opacity: 0,
       }, '<')
       .to(layers, {
-        z: (index) => (index + 1) * 10,
-        scale: 1,
+        z: (index) => (index + 1) * 8,
+        scale: (index) => 1 + index * 0.05,
         opacity: 1,
         stagger: 0.1,
         ease: "power.inOut",
-      });
+      })
+      .to('.color-block', {
+        scaleX: 1,
+        opacity: 1,
+        background: vol4.cards[index].color,
+        ease: 'power3.inOut',
+        duration: 1
+      }, '<')
+      .to('.caption', {
+        top: '12%',
+        opacity: 1,
+        ease: 'power.inOut',
+      }, '<');
 
 
-    card.addEventListener("click", () => {
-      currentCardIdx = index;
+    card.addEventListener("click", (e) => {
+      const caption = document.querySelector(".caption");
+      caption.innerText = vol4.cards[index].name;
 
       if (!isZoomed) {
+        currentCardIdx = index;
         zoomTl.play();
       } else {
         zoomTl.reverse();
+        currentCardIdx = null;
       }
       isZoomed = !isZoomed;
     });
-
-
   });
 
   const booth = document.querySelector(".booth");
   booth.addEventListener("click", () => {
-    console.log("booth");
-    cardList[currentCardIdx].click();
+    currentCardIdx !== null && cardList[currentCardIdx].click();
   });
-}
-
-import { vol4 } from '/data.js';
-
-function loadLayers() {
-  const container = document.createElement("div");
-  container.dataset.tilt = '';
-  const img = document.createElement("img");
-  img.src = '/vol4/layers/vol4-01/origin.jpg';
-  container.appendChild(img);
-
-  return container;
 }
 
 preloadImages().then(() => {
   document.body.classList.remove("loading");
-  loadLayers();
   init();
 });
