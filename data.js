@@ -57,36 +57,44 @@ export const vol4 = {
   theme: "Crystal Beast",
   cards: [
     {
-      name: "CRYSTAL BEAST SAPPHIRE PEGASUS",
-      layers: 3
+      name: "SAPPHIRE PEGASUS",
+      layers: 3,
+      color: '#4072ae'
     },
     {
-      name: "CRYSTAL BEAST AMBER MAMMOTH",
-      layers: 3
+      name: "AMBER MAMMOTH",
+      layers: 3,
+      color: '#b8672b'
     },
     {
-      name: "CRYSTAL BEAST COBALT EAGLE",
-      layers: 3
+      name: "COBALT EAGLE",
+      layers: 3,
+      color: '#4d86c1'
     },
     {
-      name: "CRYSTAL BEAST RUBY CARBUNCLE",
-      layers: 3
+      name: "RUBY CARBUNCLE",
+      layers: 3,
+      color: '#e16a83'
     },
     {
-      name: "CRYSTAL BEAST AMETHYST CAT",
-      layers: 3
+      name: "AMETHYST CAT",
+      layers: 3,
+      color: '#eaccfd'
     },
     {
-      name: "CRYSTAL BEAST EMERALD TORTOISE",
-      layers: 3
+      name: "EMERALD TORTOISE",
+      layers: 3,
+      color: '#6acfb2'
     },
     {
-      name: "CRYSTAL BEAST TOPAZ TIGER",
-      layers: 3
+      name: "TOPAZ TIGER",
+      layers: 3,
+      color: '#fcfb85'
     },
     {
       name: "RAINBOW DRAGON",
-      layers: 5
+      layers: 5,
+      color: '#78aab8'
     }
   ]
 }
