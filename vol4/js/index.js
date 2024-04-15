@@ -136,7 +136,6 @@ function bindEvent() {
       .to('.group', {
         rotation: 360 - (index + 1) * 45,
         y: 420,
-
       })
       .to(card, {
         rotateY: -180,

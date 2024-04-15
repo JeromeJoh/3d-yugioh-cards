@@ -81,8 +81,12 @@ export const vol4 = {
       layers: 3
     },
     {
-      name: "RAINBOw DRAGON",
-      layers: 5
+      name: "CRYSTAL BEAST TOPAZ TIGER",
+      layers: 3
     },
+    {
+      name: "RAINBOW DRAGON",
+      layers: 5
+    }
   ]
 }

@@ -114,61 +114,6 @@ a:focus-visible {
   outline: none;
 }
 
-.frame {
-  padding: var(--page-padding);
-  position: relative;
-  text-transform: uppercase;
-  font-size: 12px;
-  display: grid;
-  z-index: 1000;
-  width: 100%;
-  height: 100%;
-  grid-row-gap: 1rem;
-  grid-column-gap: 2rem;
-  pointer-events: none;
-  justify-items: start;
-  grid-template-columns: auto auto;
-  grid-template-areas: "title" "archive" "back" "github" "demos" "sponsor" "tags";
-}
-
-.frame #cdawrap {
-  justify-self: start;
-}
-
-.frame a {
-  pointer-events: auto;
-}
-
-.frame__title {
-  grid-area: title;
-  font-size: inherit;
-  margin: 0;
-}
-
-.frame__back {
-  grid-area: back;
-  justify-self: start;
-}
-
-.frame__archive {
-  grid-area: archive;
-  justify-self: start;
-}
-
-.frame__tags {
-  grid-area: tags;
-}
-
-.frame__github {
-  grid-area: github;
-}
-
-.frame__demos {
-  grid-area: demos;
-  display: flex;
-  gap: 1rem;
-}
-
 .content {
   display: flex;
   justify-content: center;
@@ -221,11 +166,20 @@ a:focus-visible {
 }
 
 .card__img {
+  position: relative;
   width: 5em;
   border-radius: 2px;
   aspect-ratio: 0.7;
   background-position: center;
   background-size: cover;
+}
+
+.card__img img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%;
 }
 
 .headings {
@@ -239,7 +193,7 @@ a:focus-visible {
 
 .headings__main {
   line-height: 0.5;
-  font-size: clamp(2.5rem, 1.59rem + 3.883vw, 6.25rem);
+  font-size: clamp(2.5rem, 1.5rem + 3.5vw, 6.25rem);
 }
 
 .headings_subtitle {
@@ -282,7 +236,6 @@ a:focus-visible {
   place-items: center;
   width: 14.5rem;
   height: 20.5rem;
-  border: solid 1px red;
   transform-style: preserve-3d;
   cursor: pointer;
   user-select: none;
@@ -302,15 +255,11 @@ a:focus-visible {
   position: fixed;
   margin: 2rem 2rem;
   z-index: 10;
-  /* text-align: center; */
-  user-select: none;
-}
-
-.logo h1 {
-  font-size: 0.8rem;
+  text-align: center;
   user-select: none;
 }
 
 .logo img {
-  height: 2rem;
+  width: 7rem;
+  opacity: 0.8;
 }
