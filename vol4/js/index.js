@@ -118,9 +118,14 @@ function entranceAnimation() {
 }
 
 function bindEvent() {
+  let currentCardIdx = null;
+
   const cardList = gsap.utils.toArray(".card");
 
   cardList.forEach((card, index) => {
+
+    const layers = gsap.utils.toArray('.wrapper img');
+
     let isZoomed = false;
 
     const zoomTl = gsap.timeline({
@@ -131,20 +136,33 @@ function bindEvent() {
       .to('.group', {
         rotation: 360 - (index + 1) * 45,
         y: 420,
+
       })
       .to(card, {
         rotateY: -180,
-        scale: 2.5,
+        scale: 2.4,
         onComplete: () => {
           rouletteTween.pause();
         },
         onReverseComplete: () => {
           rouletteTween.play();
         }
-      }, '<');
+      }, '<')
+      .to('.headings', {
+        scale: .5,
+        opacity: 0,
+      }, '<')
+      .to(layers, {
+        z: (index) => (index + 1) * 10,
+        scale: 1,
+        opacity: 1,
+        stagger: 0.1,
+        ease: "power.inOut",
+      });
 
 
     card.addEventListener("click", () => {
+      currentCardIdx = index;
 
       if (!isZoomed) {
         zoomTl.play();
@@ -152,11 +170,32 @@ function bindEvent() {
         zoomTl.reverse();
       }
       isZoomed = !isZoomed;
-    })
+    });
+
+
+  });
+
+  const booth = document.querySelector(".booth");
+  booth.addEventListener("click", () => {
+    console.log("booth");
+    cardList[currentCardIdx].click();
   });
 }
 
-preloadImages(".card__img").then(() => {
+import { vol4 } from '/data.js';
+
+function loadLayers() {
+  const container = document.createElement("div");
+  container.dataset.tilt = '';
+  const img = document.createElement("img");
+  img.src = '/vol4/layers/vol4-01/origin.jpg';
+  container.appendChild(img);
+
+  return container;
+}
+
+preloadImages().then(() => {
   document.body.classList.remove("loading");
+  loadLayers();
   init();
 });

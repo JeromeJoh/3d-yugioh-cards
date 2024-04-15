@@ -84,7 +84,5 @@ export const vol4 = {
       name: "RAINBOw DRAGON",
       layers: 5
     },
-
-
   ]
 }
