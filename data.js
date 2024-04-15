@@ -51,3 +51,40 @@ export const vol3 = {
     }
   ]
 }
+
+export const vol4 = {
+  number: 4,
+  theme: "Crystal Beast",
+  cards: [
+    {
+      name: "CRYSTAL BEAST SAPPHIRE PEGASUS",
+      layers: 3
+    },
+    {
+      name: "CRYSTAL BEAST AMBER MAMMOTH",
+      layers: 3
+    },
+    {
+      name: "CRYSTAL BEAST COBALT EAGLE",
+      layers: 3
+    },
+    {
+      name: "CRYSTAL BEAST RUBY CARBUNCLE",
+      layers: 3
+    },
+    {
+      name: "CRYSTAL BEAST AMETHYST CAT",
+      layers: 3
+    },
+    {
+      name: "CRYSTAL BEAST EMERALD TORTOISE",
+      layers: 3
+    },
+    {
+      name: "RAINBOw DRAGON",
+      layers: 5
+    },
+
+
+  ]
+}
