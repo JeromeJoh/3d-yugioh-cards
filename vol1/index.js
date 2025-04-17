@@ -53,7 +53,6 @@ function bindEvent() {
   }, false);
 
   // Menu List Animation
-  // TODO: use ul tag?
   const links = gsap.utils.toArray('nav li');
 
   links.forEach(link => {

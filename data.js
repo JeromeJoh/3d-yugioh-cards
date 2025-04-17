@@ -7,6 +7,7 @@ export const vol1 = {
     "Harpie's Hunting Ground",
     "Magical Hats",
     "Cyber Slash Harpie Lady",
+    "Elegant Egotist",
   ]
 }
 
