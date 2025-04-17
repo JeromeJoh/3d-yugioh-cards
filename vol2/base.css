@@ -1,5 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400..700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
 
 * {
   box-sizing: border-box;
@@ -8,7 +8,7 @@
 body {
   margin: 0;
   height: 100vh;
-  font-family: "Josefin Sans", snas-serif;
+  font-family: 'Josefin Sans', sans-serif;
   background-color: #ffe3e0;
   overflow-x: hidden;
 }
@@ -69,7 +69,7 @@ section {
   position: relative;
   width: 100vw;
   display: flex;
-  font-family: "Markazi Text", serif;
+  font-family: 'Markazi Text', serif;
 }
 
 section main {
