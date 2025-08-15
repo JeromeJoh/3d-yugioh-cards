@@ -56,7 +56,7 @@ const scrollTween = gsap.to(sections, {
   }
 });
 
-sections.forEach((section, i) => {
+sections.forEach((section) => {
   gsap.from(section.querySelector('h1'), {
     yPercent: 135,
     scrollTrigger: {

@@ -36,7 +36,7 @@ export const vol2 = {
 
 export const vol3 = {
   number: 3,
-  theme: "",
+  theme: "Classic Normal Monsters",
   cards: [
     {
       name: "Dark Magician",
