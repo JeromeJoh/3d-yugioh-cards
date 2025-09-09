@@ -15,6 +15,15 @@
       position: relative;
       z-index: 100;
     }
+
+    .container::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url(./layers/vol1-06/ego.PNG);
+      background-position: center;
+      background-size: cover;
+    }
   </style>
 </head>
 
@@ -26,7 +35,7 @@
     </aside>
     <div class="content">
       <div style="overflow: hidden;" class="container js-tilt" data-tilt>
-        <img src="./layers/vol1-06/ego.PNG" alt="" class="layer">
+        <!-- <img src="./layers/vol1-06/ego.PNG" alt="" class="layer"> -->
         <div class="kaleidoscope">
           <div class="k-container">
             <div class="tile">
