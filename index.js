@@ -1,0 +1,210 @@
+const lenis = new Lenis()
+lenis.on('scroll', ScrollTrigger.update);
+gsap.ticker.add((time) => lenis.raf(time * 1000))
+gsap.ticker.lagSmoothing(0)
+gsap.registerPlugin(ScrollTrigger)
+
+const config = {
+  gap: 0.08,
+  speed: 0.3,
+  arcRadius: 500
+}
+
+const spotlightItems = Array.from({ length: 10 }, (_, index) => ({
+  name: `Item ${index + 1}`,
+  image: `./${String.fromCharCode(97 + index % 2)}.jpg`
+}))
+
+const titlesContainerElement = document.querySelector('.spotlight-titles-container')
+const titlesContainer = document.querySelector('.spotlight-titles')
+const imagesContainer = document.querySelector('.spotlight-images')
+const spotlightHeader = document.querySelector('.spotlight-header')
+const introTextElement = document.querySelectorAll('.spotlight-intro-text')
+
+const imageElements = []
+
+spotlightItems.forEach((item, index) => {
+  const { name, image } = item
+  const titleElement = document.createElement('h1');
+  titleElement.textContent = name;
+  if (index === 0) titleElement.style.opacity = 1;
+  titlesContainer.appendChild(titleElement);
+
+  const imageWrapper = document.createElement('div');
+  imageWrapper.className = 'spotlight-img';
+  const imageElement = document.createElement('img');
+  imageElement.src = image;
+  imageWrapper.appendChild(imageElement);
+  imagesContainer.appendChild(imageWrapper);
+  imageElements.push(imageWrapper);
+});
+
+const titleElements = titlesContainer.querySelectorAll('h1');
+let currentActiveIndex = 0;
+
+const containerWidth = window.innerWidth * 0.3;
+const containerHeight = window.innerHeight;
+const arcStartX = containerWidth - 220;
+const arcStartY = -200;
+const arcEndY = containerHeight + 200;
+const arcControlPointX = arcStartX + config.arcRadius;
+const arcControlPointY = containerHeight / 2;
+
+
+function getBezierPosition(t) {
+  const x = (1 - t) * (1 - t) * arcStartX + 2 * (1 - t) * t * arcControlPointX + t * t * arcStartX;
+  const y = (1 - t) * (1 - t) * arcStartY + 2 * (1 - t) * t * arcControlPointY + t * t * arcEndY;
+  return { x, y };
+}
+
+function getImgProgressState(index, overallProgress) {
+  const startTime = index * config.gap;
+  const endTime = startTime + config.speed;
+
+  if (overallProgress < startTime) return -1;
+  if (overallProgress > endTime) return 2;
+
+  return (overallProgress - startTime) / config.speed;
+}
+
+imageElements.forEach(img => gsap.set(img, { opacity: 0 }))
+
+ScrollTrigger.create({
+  trigger: '.spotlight',
+  start: 'top top',
+  end: `+=${window.innerHeight * 10}px`,
+  pin: true,
+  pinSpacing: true,
+  scrub: 1,
+  onUpdate: (self) => {
+    const progress = self.progress;
+    console.log(progress.toFixed(2));
+
+
+    if (progress <= 0.2) {
+      const animationProgress = progress / 0.2;
+
+      const moveDistance = window.innerWidth * 0.6;
+      gsap.set(introTextElement[0], {
+        x: -moveDistance * animationProgress
+      });
+      gsap.set(introTextElement[1], {
+        x: moveDistance * animationProgress
+      });
+      gsap.set(introTextElement[0], {
+        opacity: 1
+      });
+      gsap.set(introTextElement[1], {
+        opacity: 1
+      });
+
+      gsap.set('.spotlight-bg-img', {
+        scale: animationProgress,
+      });
+      gsap.set('.spotlight-bg-img img', {
+        scale: 1.5 - animationProgress * 0.5,
+      });
+
+      imageElements.forEach(img => gsap.set(img, { opacity: 0 }))
+      spotlightHeader.style.opacity = 0;
+      gsap.set(titlesContainerElement, {
+        '--before-opacity': 0,
+        '--after-opacity': 0
+      });
+    }
+
+    else if (progress > 0.2 && progress <= 0.25) {
+      gsap.set('.spotlight-bg-img', {
+        scale: 1
+      });
+      gsap.set('.spotlight-bg-img img', {
+        scale: 1
+      });
+
+      gsap.set(introTextElement[0], {
+        opacity: 0
+      });
+      gsap.set(introTextElement[1], {
+        opacity: 0
+      });
+
+      imageElements.forEach(img => gsap.set(img, { opacity: 0 }))
+      spotlightHeader.style.opacity = 1;
+      gsap.set(titlesContainerElement, {
+        '--before-opacity': 1,
+        '--after-opacity': 1
+      });
+    }
+
+    else if (progress > 0.25 && progress <= 0.95) {
+
+      gsap.set('.spotlight-bg-img', {
+        transform: 'scale(1)'
+      });
+      gsap.set('.spotlight-bg-img img', {
+        transform: 'scale(1)'
+      });
+
+      gsap.set(introTextElement[0], {
+        opacity: 0
+      });
+      gsap.set(introTextElement[1], {
+        opacity: 0
+      });
+      spotlightHeader.style.opacity = 1;
+      gsap.set(titlesContainerElement, {
+        '--before-opacity': 1,
+        '--after-opacity': 1
+      });
+
+      const switchProgress = (progress - 0.25) / 0.7;
+      const viewportHeight = window.innerHeight;
+      const titleContainerHeight = titlesContainer.scrollHeight;
+      const startPostion = viewportHeight;
+      const targetPosition = -titleContainerHeight;
+      const totalDistance = startPostion - targetPosition;
+      const currentY = startPostion - totalDistance * switchProgress;
+      // console.log('SWITCH PROGRESS', switchProgress.toFixed(2), 'CURRENT Y', currentY);
+
+      gsap.set('.spotlight-titles', {
+        transform: `translateY(${currentY}px)`
+      });
+
+      imageElements.forEach((img, index) => {
+        const imgProgress = getImgProgressState(index, switchProgress);
+        console.log('IMG PROGRESS', imgProgress.toFixed(2));
+
+        if (imgProgress < 0 || imgProgress >= 1) {
+          // gsap.set(img, { opacity: 0 });
+        } else {
+          const pos = getBezierPosition(imgProgress);
+          gsap.set(img, { x: pos.x - 100, y: pos.y - 75, opacity: 1 });
+        }
+      });
+
+      const viewportMiddle = viewportHeight / 2;
+      let closetIndex = 0;
+      let closetDistance = Infinity;
+
+      titleElements.forEach((title, index) => {
+        const titleRect = title.getBoundingClientRect();
+        const titleMiddle = titleRect.top + titleRect.height / 2;
+        const distance = Math.abs(viewportMiddle - titleMiddle);
+
+        if (distance < closetDistance) {
+          closetDistance = distance;
+          closetIndex = index;
+        }
+      });
+
+      if (closetIndex !== currentActiveIndex) {
+        if (titleElements[currentActiveIndex]) {
+          titleElements[currentActiveIndex].style.opacity = 0.25;
+        }
+        titleElements[closetIndex].style.opacity = 1;
+        document.querySelector('.spotlight-bg-img img').src = spotlightItems[closetIndex].image;
+        currentActiveIndex = closetIndex;
+      }
+    }
+  }
+})

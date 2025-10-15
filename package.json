@@ -1,0 +1,16 @@
+{
+  "name": "3d-yugioh-cards",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/JeromeJoh/3d-yugioh-cards.git",
+  "author": "JeromeJoh <jerome.yzhao@foxmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^7.1.10"
+  }
+}
