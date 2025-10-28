@@ -259,3 +259,76 @@ imagesLoaded(document.querySelector('img'))
     console.log('All images done!');
     console.log('Total:', instance.images.length);
   });
+
+const blobCount = 7;            // 色块数量
+const maxSpeed = 0.08;          // 最大速度（px/ms）
+const sizeRange = [500, 620];   // 色块大小范围
+const blurRange = [20, 100];    // 模糊范围
+const colors = [
+  '#68c40c', '#d32297', '#c6c82b'
+];
+
+const bg = document.getElementById('bg');
+const blobs = [];
+
+// 创建色块
+for (let i = 0; i < blobCount; i++) {
+  const blob = document.createElement('div');
+  blob.className = 'blob';
+  const size = rand(sizeRange[0], sizeRange[1]);
+  blob.style.setProperty('--size', `${size}px`);
+  blob.style.setProperty('--blur', `${rand(blurRange[0], blurRange[1])}px`);
+  blob.style.background = colors[i % colors.length];
+  bg.appendChild(blob);
+
+  blobs.push({
+    el: blob,
+    x: rand(window.innerWidth * 0.1, window.innerWidth * 0.9),
+    y: rand(window.innerHeight * 0.1, window.innerHeight * 0.9),
+    vx: rand(-maxSpeed, maxSpeed),
+    vy: rand(-maxSpeed, maxSpeed),
+    speedFactor: 0.5 + Math.random() * 1.5
+  });
+}
+
+// 工具函数
+function rand(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+// 每隔一段时间改变方向
+setInterval(() => {
+  blobs.forEach(b => {
+    b.vx += rand(-0.1, 0.1);
+    b.vy += rand(-0.1, 0.1);
+    const mag = Math.hypot(b.vx, b.vy);
+    const limit = maxSpeed * b.speedFactor;
+    if (mag > limit) {
+      b.vx = (b.vx / mag) * limit;
+      b.vy = (b.vy / mag) * limit;
+    }
+  });
+}, 2000);
+
+// 动画循环
+let lastTime = performance.now();
+function animate(t) {
+  const dt = t - lastTime;
+  lastTime = t;
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+
+  for (const b of blobs) {
+    b.x += b.vx * dt;
+    b.y += b.vy * dt;
+
+    // 边界反弹
+    if (b.x < -200 || b.x > width + 200) b.vx *= -1;
+    if (b.y < -200 || b.y > height + 200) b.vy *= -1;
+
+    b.el.style.transform = `translate3d(${b.x}px, ${b.y}px, 0)`;
+  }
+
+  requestAnimationFrame(animate);
+}
+requestAnimationFrame(animate);

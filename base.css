@@ -1,10 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+TC:wght@400;500;700&family=Righteous&display=swap');
+
 :root {
   --primary-color: #007bff;
   --secondary-color: #6c757d;
+  --theme-green: #68c40c;
+  --theme-pink: #d32297;
+  --theme-yellow: #c6c82b;
 
   font-family: 'Josefin Sans', sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: darkgray transparent;
 }
 
 @view-transition {
@@ -15,34 +30,11 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: url(/images/background/noise.png) whitesmoke;
 }
 
 body.page-leave {
   background: royalblue;
-}
-
-header {
-  background-color: #f8f9fa;
-  padding: 1rem;
-  text-align: center;
-  border-bottom: 1px solid #dee2e6;
-}
-
-footer {
-  background-color: #f8f9fa;
-  padding: 1rem;
-  text-align: center;
-  border-top: 1px solid #dee2e6;
-}
-
-main {
-  flex: 1;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 }
 
 body {
@@ -56,27 +48,52 @@ img {
 }
 
 h1 {
-  font-size: 4rem;
+  font-size: 2rem;
 }
 
-p {
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Righteous', sans;
+  border: solid 1px red;
+  padding: 2rem;
+  position: sticky;
+  top: 0;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+}
+
+header img {
+  width: 17rem;
+}
+
+nav {
+  --gap: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 2px black;
+  border-width: 0 0 0 4px;
   font-size: 1.5rem;
+  gap: var(--gap);
+  padding-inline: var(--gap);
+  padding-block: 6px;
 }
 
 section {
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   overflow: hidden;
-}
-
-.intro,
-.outro {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: black;
-  color: white;
 }
 
 .spotlight-intro-text-wrapper {
@@ -223,6 +240,7 @@ section {
 .outro {
   padding: 2rem;
   text-align: center;
+  border: solid 2px lime;
 }
 
 /* .intro h1 {
@@ -240,6 +258,12 @@ section {
     offset-distance: 100%;
   }
 } */
+
+#bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+}
 
 
 #loader {
@@ -259,4 +283,17 @@ section {
   transform-origin: left center;
   transform: scaleX(var(--progress, 0));
   transition: transform 0.3s ease-out;
+}
+
+.blob {
+  position: absolute;
+  width: var(--size, 400px);
+  height: var(--size, 400px);
+  border-radius: 50%;
+  filter: blur(var(--blur, 120px));
+  opacity: 0.9;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  will-change: transform;
+  background: url(/images/background/noise.png) white;
 }
