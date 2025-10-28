@@ -1,3 +1,8 @@
+import imagesLoaded from "imagesloaded";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Lenis from "@studio-freight/lenis";
+
 const lenis = new Lenis()
 lenis.on('scroll', ScrollTrigger.update);
 gsap.ticker.add((time) => lenis.raf(time * 1000))
@@ -5,15 +10,17 @@ gsap.ticker.lagSmoothing(0)
 gsap.registerPlugin(ScrollTrigger)
 
 const config = {
-  gap: 0.08,
-  speed: 0.3,
+  gap: 0.15,
+  speed: 0.6,
   arcRadius: 500
 }
 
-const spotlightItems = Array.from({ length: 10 }, (_, index) => ({
-  name: `Item ${index + 1}`,
-  image: `./${String.fromCharCode(97 + index % 2)}.jpg`
-}))
+const spotlightItems = [
+  { name: 'Harpie Lady', image: './images/cards/1.jpg' },
+  { name: 'Plant Princess', image: './images/cards/2.jpg' },
+  { name: 'Classic Normal Monster', image: './images/cards/3.jpg' },
+  { name: 'Crystal Beast', image: './images/cards/4.jpg' },
+]
 
 const titlesContainerElement = document.querySelector('.spotlight-titles-container')
 const titlesContainer = document.querySelector('.spotlight-titles')
@@ -31,10 +38,14 @@ spotlightItems.forEach((item, index) => {
   titlesContainer.appendChild(titleElement);
 
   const imageWrapper = document.createElement('div');
+  const link = document.createElement('a');
+  link.href = `vol${index + 1}/`;
+  link.style.display = 'block';
   imageWrapper.className = 'spotlight-img';
   const imageElement = document.createElement('img');
   imageElement.src = image;
-  imageWrapper.appendChild(imageElement);
+  link.appendChild(imageElement);
+  imageWrapper.appendChild(link);
   imagesContainer.appendChild(imageWrapper);
   imageElements.push(imageWrapper);
 });
@@ -78,8 +89,7 @@ ScrollTrigger.create({
   scrub: 1,
   onUpdate: (self) => {
     const progress = self.progress;
-    console.log(progress.toFixed(2));
-
+    // console.log(progress.toFixed(2));
 
     if (progress <= 0.2) {
       const animationProgress = progress / 0.2;
@@ -164,7 +174,8 @@ ScrollTrigger.create({
       const targetPosition = -titleContainerHeight;
       const totalDistance = startPostion - targetPosition;
       const currentY = startPostion - totalDistance * switchProgress;
-      // console.log('SWITCH PROGRESS', switchProgress.toFixed(2), 'CURRENT Y', currentY);
+      // console.log('SWITCH PROGRESS', switchProgress.toFixed(2));
+      // console.log('PROGRESS', progress.toFixed(2));
 
       gsap.set('.spotlight-titles', {
         transform: `translateY(${currentY}px)`
@@ -172,7 +183,7 @@ ScrollTrigger.create({
 
       imageElements.forEach((img, index) => {
         const imgProgress = getImgProgressState(index, switchProgress);
-        console.log('IMG PROGRESS', imgProgress.toFixed(2));
+        // if (index === 0) console.log('IMG PROGRESS', imgProgress.toFixed(2));
 
         if (imgProgress < 0 || imgProgress >= 1) {
           // gsap.set(img, { opacity: 0 });
@@ -202,9 +213,49 @@ ScrollTrigger.create({
           titleElements[currentActiveIndex].style.opacity = 0.25;
         }
         titleElements[closetIndex].style.opacity = 1;
-        document.querySelector('.spotlight-bg-img img').src = spotlightItems[closetIndex].image;
+        // document.querySelector('.spotlight-bg-img img').src = spotlightItems[closetIndex].image;
         currentActiveIndex = closetIndex;
       }
     }
   }
 })
+
+
+// document.querySelectorAll('a').forEach(link => {
+//   link.addEventListener('click', e => {
+//     e.preventDefault();
+//     document.body.classList.add('page-leave');
+//     setTimeout(() => {
+//       window.location = link.href;
+//     }, 600); // 动画时长
+//   });
+// });
+
+const preloadImages = (selector = 'img') => {
+  return new Promise((resolve) => {
+    imagesLoaded(document.querySelectorAll(selector), { background: true }, resolve);
+  });
+};
+
+// preloadImages('.spotlight-bg-img img').then((res) => {
+//   console.log('All images loaded', res);
+// });
+
+const progressBar = document.querySelector('.progress-bar');
+
+
+imagesLoaded(document.querySelector('img'))
+  .on('progress', (instance, image) => {
+    console.log('One image finished (loaded or failed):', image.img.src);
+    console.log('Is loaded?', image.isLoaded);
+    const progress = instance.progressedCount / instance.images.length;
+    console.log('Progress:', progress);
+    progressBar.style.setProperty('--progress', progress);
+  })
+  .on('always', (instance) => {
+    setTimeout(() => {
+      document.querySelector('#loader').remove();
+    }, 300);
+    console.log('All images done!');
+    console.log('Total:', instance.images.length);
+  });

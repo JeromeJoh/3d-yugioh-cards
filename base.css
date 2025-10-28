@@ -7,10 +7,18 @@
   font-family: 'Josefin Sans', sans-serif;
 }
 
+@view-transition {
+  navigation: auto;
+}
+
 body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+body.page-leave {
+  background: royalblue;
 }
 
 header {
@@ -103,9 +111,18 @@ section {
 .spotlight-bg-img img {
   transform: scale(1.5);
   will-change: transform;
-  object-fit: cover;
+  object-fit: contain;
+  animation: spin 10s 0s linear infinite;
 }
 
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 .spotlight-titles-container {
   position: absolute;
   top: 0;
@@ -157,13 +174,16 @@ section {
   height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 5rem;
   transform: translateY(100%);
   z-index: 2;
+  /* border: solid 1px navy; */
 }
 
 .spotlight-titles h1 {
-  color: white;
+  white-space: nowrap;
+  color: black;
   opacity: 0.25;
   transform: opacity 0.3s ease;
 }
@@ -175,14 +195,17 @@ section {
   min-width: 300px;
   height: 100%;
   z-index: 1;
-  pointer-events: none;
+  /* pointer-events: none; */
 }
 
 .spotlight-img {
   position: absolute;
-  width: 200px;
-  height: 150px;
+  max-width: 12rem;
   will-change: transform;
+}
+
+.spotlight-img:hover {
+  transform: scale(2);
 }
 
 .spotlight-header {
@@ -217,3 +240,23 @@ section {
     offset-distance: 100%;
   }
 } */
+
+
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: red;
+  z-index: 1000;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #4facfe, #00f2fe);
+  transform-origin: left center;
+  transform: scaleX(var(--progress, 0));
+  transition: transform 0.3s ease-out;
+}
