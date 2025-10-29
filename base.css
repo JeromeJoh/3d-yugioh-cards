@@ -26,12 +26,44 @@
   navigation: auto;
 }
 
+@keyframes moveNoise {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(-3%, 3%);
+  }
+}
+
+@keyframes drift {
+  0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
+  25%  { transform: translate(-2%, 1%) scale(1.03) rotate(0.3deg); }
+  50%  { transform: translate(-3%, 3%) scale(1.02) rotate(-0.2deg); }
+  75%  { transform: translate(1%, -2%) scale(1.04) rotate(0.4deg); }
+  100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+}
+
 body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: url(/images/background/noise.png) whitesmoke;
+  /* background: url(/images/background/noise.png) snow; */
 }
+
+.noise-layer {
+  --move-range: 2%;
+  position: fixed;
+  width: 104%;
+  height: 104%;
+  top: -2%;
+  left: -2%;
+  background: url(/images/background/noise.png);
+  animation: drift 40s infinite linear alternate;
+  mix-blend-mode: overlay;
+  z-index: 1;
+  pointer-events: none;
+}
+
 
 body.page-leave {
   background: royalblue;
@@ -203,6 +235,7 @@ section {
   color: black;
   opacity: 0.25;
   transform: opacity 0.3s ease;
+  font-size: 3rem;
 }
 
 .spotlight-images {
@@ -219,6 +252,12 @@ section {
   position: absolute;
   max-width: 12rem;
   will-change: transform;
+}
+
+.spotlight-img img {
+  width: 100%;
+  height: 100%;
+  object: contain
 }
 
 .spotlight-img:hover {
@@ -262,7 +301,8 @@ section {
 #bg {
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: -100;
+  /* background: url(/images/background/noise.png); */
 }
 
 
@@ -295,5 +335,4 @@ section {
   mix-blend-mode: screen;
   pointer-events: none;
   will-change: transform;
-  background: url(/images/background/noise.png) white;
 }

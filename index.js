@@ -221,28 +221,9 @@ ScrollTrigger.create({
 })
 
 
-// document.querySelectorAll('a').forEach(link => {
-//   link.addEventListener('click', e => {
-//     e.preventDefault();
-//     document.body.classList.add('page-leave');
-//     setTimeout(() => {
-//       window.location = link.href;
-//     }, 600); // 动画时长
-//   });
-// });
 
-const preloadImages = (selector = 'img') => {
-  return new Promise((resolve) => {
-    imagesLoaded(document.querySelectorAll(selector), { background: true }, resolve);
-  });
-};
-
-// preloadImages('.spotlight-bg-img img').then((res) => {
-//   console.log('All images loaded', res);
-// });
-
+// Preload Images
 const progressBar = document.querySelector('.progress-bar');
-
 
 imagesLoaded(document.querySelector('img'))
   .on('progress', (instance, image) => {
@@ -260,6 +241,10 @@ imagesLoaded(document.querySelector('img'))
     console.log('Total:', instance.images.length);
   });
 
+
+
+
+// Animated Background
 const blobCount = 7;            // 色块数量
 const maxSpeed = 0.08;          // 最大速度（px/ms）
 const sizeRange = [500, 620];   // 色块大小范围
@@ -331,4 +316,4 @@ function animate(t) {
 
   requestAnimationFrame(animate);
 }
-requestAnimationFrame(animate);
+// requestAnimationFrame(animate);
