@@ -1,7 +1,10 @@
+import VanillaTilt from 'vanilla-tilt';
+import { gsap } from 'gsap';
+
 // Tilt.js Configuration
-$('.js-tilt').tilt({
+VanillaTilt.init(document.querySelectorAll('.container'), {
   glare: true,
-  maxGlare: .5
+  "max-glare": 0.5
 });
 
 
