@@ -1,9 +1,15 @@
-// Tilt.js Configuration
-$('.js-tilt').tilt({
-  glare: true,
-  maxGlare: .5
-});
+import VanillaTilt from 'vanilla-tilt';
+import { gsap } from 'gsap';
+// import ScrollTrigger from 'gsap/ScrollTrigger';
+import SplitType from 'split-type';
+import Lenis from '@studio-freight/lenis';
 
+
+// Tilt.js Configuration
+VanillaTilt.init(document.querySelectorAll('.container'), {
+  glare: true,
+  "max-glare": 0.5
+});
 
 // smooth scroll
 const lenis = new Lenis();
