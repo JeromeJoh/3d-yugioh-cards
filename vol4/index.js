@@ -1,4 +1,6 @@
-import { preloadImages } from "./utils.js";
+import { gsap } from "gsap";
+import VanillaTilt from 'vanilla-tilt';
+import { preloadImages } from "./js/utils.js";
 
 const init = () => {
   const debug = false;
@@ -198,5 +200,9 @@ function bindEvent() {
 
 preloadImages().then(() => {
   document.body.classList.remove("loading");
+  VanillaTilt.init(document.querySelectorAll('.container'), {
+    glare: true,
+    "max-glare": 0.5
+  });
   init();
 });
