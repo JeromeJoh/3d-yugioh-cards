@@ -36,11 +36,21 @@
 }
 
 @keyframes drift {
-  0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
-  25%  { transform: translate(-2%, 1%) scale(1.03) rotate(0.3deg); }
-  50%  { transform: translate(-3%, 3%) scale(1.02) rotate(-0.2deg); }
-  75%  { transform: translate(1%, -2%) scale(1.04) rotate(0.4deg); }
-  100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  0% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  25% {
+    transform: translate(-2%, 1%) scale(1.03) rotate(0.3deg);
+  }
+  50% {
+    transform: translate(-3%, 3%) scale(1.02) rotate(-0.2deg);
+  }
+  75% {
+    transform: translate(1%, -2%) scale(1.04) rotate(0.4deg);
+  }
+  100% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
 }
 
 body {
@@ -63,7 +73,6 @@ body {
   z-index: 1;
   pointer-events: none;
 }
-
 
 body.page-leave {
   background: royalblue;
@@ -250,14 +259,44 @@ section {
 
 .spotlight-img {
   position: absolute;
-  max-width: 12rem;
+  width: 12rem;
+  aspect-ratio: 40 / 57;
   will-change: transform;
+  border-radius: 2px;
+}
+
+.spotlight-img a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  perspective: 1000px;
+}
+
+.spotlight-img:hover .inner {
+  transform: rotateY(180deg); /* 鼠标悬停翻转 */
+}
+
+.inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.4s;
 }
 
 .spotlight-img img {
-  width: 100%;
-  height: 100%;
-  object: contain
+  position: absolute;
+  inset: 0;
+  object-fit: contain;
+  backface-visibility: hidden;
+}
+
+.spotlight-img .front {
+  background: red;
+}
+
+.spotlight-img .back {
+  transform: rotateY(180deg);
 }
 
 .spotlight-img:hover {
@@ -304,7 +343,6 @@ section {
   z-index: -100;
   /* background: url(/images/background/noise.png); */
 }
-
 
 #loader {
   position: fixed;

@@ -38,13 +38,18 @@ spotlightItems.forEach((item, index) => {
   titlesContainer.appendChild(titleElement);
 
   const imageWrapper = document.createElement('div');
+  const inner = document.createElement('div');
+  inner.className = 'inner';
   const link = document.createElement('a');
   link.href = `vol${index + 1}/`;
-  link.style.display = 'block';
   imageWrapper.className = 'spotlight-img';
   const imageElement = document.createElement('img');
+  const cardbackElement = document.createElement('img');
+  cardbackElement.src = './images/card-back.png';
   imageElement.src = image;
-  link.appendChild(imageElement);
+  imageElement.className = 'back';
+  inner.append(imageElement, cardbackElement);
+  link.append(inner);
   imageWrapper.appendChild(link);
   imagesContainer.appendChild(imageWrapper);
   imageElements.push(imageWrapper);
@@ -264,7 +269,7 @@ for (let i = 0; i < blobCount; i++) {
   blob.style.setProperty('--size', `${size}px`);
   blob.style.setProperty('--blur', `${rand(blurRange[0], blurRange[1])}px`);
   blob.style.background = colors[i % colors.length];
-  bg.appendChild(blob);
+  // bg.appendChild(blob);
 
   blobs.push({
     el: blob,
