@@ -9,7 +9,7 @@ VanillaTilt.init(document.querySelectorAll('.container'), {
 
 
 // initialization
-import { vol1 } from '/data.js';
+import { vol1 } from '@/constants/data';
 
 const init = () => {
   render(vol1);

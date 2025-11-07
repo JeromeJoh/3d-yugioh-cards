@@ -119,7 +119,7 @@ function entranceAnimation() {
   );
 }
 
-import { vol4 } from "/data.js";
+import { vol4 } from '@/constants/data';
 
 function bindEvent() {
   let currentCardIdx = null;

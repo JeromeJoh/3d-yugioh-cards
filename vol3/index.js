@@ -22,7 +22,7 @@ requestAnimationFrame(raf);
 
 
 // initialize page
-import { vol3 } from '/data.js';
+import { vol3 } from '@/constants/data';
 
 const init = () => {
   render(vol3);
