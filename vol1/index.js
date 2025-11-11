@@ -18,12 +18,9 @@ const init = () => {
 
 function render(vol) {
   // document.title = `${vol.theme} - 3D Yu-Gi-Oh! Cards`;
-
   const cardList = document.querySelector('.card-list');
-
-  // TODO: port to be a variable
   cardList.innerHTML = vol.cards.reduce((html, card, index) => {
-    const filename = `vol${vol.number}-${((index + 1) + '').padStart(2, '0')}`;
+    const filename = `${((index + 1) + '').padStart(2, '0')}`;
 
     html += `
     <li>
