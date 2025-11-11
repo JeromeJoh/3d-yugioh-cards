@@ -15,11 +15,12 @@ const config = {
   arcRadius: 500
 }
 
+
 const spotlightItems = [
-  { name: 'Harpie Lady', image: './images/cards/1.jpg' },
-  { name: 'Plant Princess', image: './images/cards/2.jpg' },
-  { name: 'Classic Normal Monster', image: './images/cards/3.jpg' },
-  { name: 'Crystal Beast', image: './images/cards/4.jpg' },
+  { name: 'Harpie Lady', image: new URL('./assets/images/cards/1.jpg', import.meta.url).href },
+  { name: 'Plant Princess', image: new URL('./assets/images/cards/2.jpg', import.meta.url).href },
+  { name: 'Classic Normal Monster', image: new URL('./assets/images/cards/3.jpg', import.meta.url).href },
+  { name: 'Crystal Beast', image: new URL('./assets/images/cards/4.jpg', import.meta.url).href },
 ]
 
 const titlesContainerElement = document.querySelector('.spotlight-titles-container')
@@ -45,7 +46,7 @@ spotlightItems.forEach((item, index) => {
   imageWrapper.className = 'spotlight-img';
   const imageElement = document.createElement('img');
   const cardbackElement = document.createElement('img');
-  cardbackElement.src = './images/card-back.png';
+  cardbackElement.src = new URL('./assets/images/card-back.png', import.meta.url).href;
   imageElement.src = image;
   imageElement.className = 'back';
   inner.append(imageElement, cardbackElement);
@@ -179,8 +180,6 @@ ScrollTrigger.create({
       const targetPosition = -titleContainerHeight;
       const totalDistance = startPostion - targetPosition;
       const currentY = startPostion - totalDistance * switchProgress;
-      // console.log('SWITCH PROGRESS', switchProgress.toFixed(2));
-      // console.log('PROGRESS', progress.toFixed(2));
 
       gsap.set('.spotlight-titles', {
         transform: `translateY(${currentY}px)`

@@ -22,10 +22,6 @@
   scrollbar-color: darkgray transparent;
 }
 
-@view-transition {
-  navigation: auto;
-}
-
 @keyframes moveNoise {
   from {
     transform: translate(0, 0);
@@ -57,7 +53,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  /* background: url(/images/background/noise.png) snow; */
+  /* background: url(./images/background/noise.png) snow; */
 }
 
 .noise-layer {
@@ -67,7 +63,7 @@ body {
   height: 104%;
   top: -2%;
   left: -2%;
-  background: url(/images/background/noise.png);
+  background: url(../images/background/noise.png);
   animation: drift 40s infinite linear alternate;
   mix-blend-mode: overlay;
   z-index: 1;
@@ -341,7 +337,7 @@ section {
   position: fixed;
   inset: 0;
   z-index: -100;
-  /* background: url(/images/background/noise.png); */
+  /* background: url(./images/background/noise.png); */
 }
 
 #loader {
