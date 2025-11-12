@@ -1,6 +1,5 @@
 import { gsap } from "gsap";
 import VanillaTilt from 'vanilla-tilt';
-import { preloadImages } from "./js/utils.js";
 
 const init = () => {
   const debug = false;
@@ -120,6 +119,7 @@ function entranceAnimation() {
 }
 
 import { vol4 } from '@/constants/data';
+import { useImageLoader } from "../src/utils";
 
 function bindEvent() {
   let currentCardIdx = null;
@@ -198,11 +198,15 @@ function bindEvent() {
   });
 }
 
-preloadImages().then(() => {
-  document.body.classList.remove("loading");
-  VanillaTilt.init(document.querySelectorAll('.container'), {
-    glare: true,
-    "max-glare": 0.5
-  });
-  init();
+await useImageLoader('img', {
+  onComplete: () => {
+    console.log('所有图片加载完成后的操作');
+    setTimeout(() => document.body.classList.remove("loading"), 300)
+  }
 });
+
+VanillaTilt.init(document.querySelectorAll('.container'), {
+  glare: true,
+  "max-glare": 0.5
+});
+init();

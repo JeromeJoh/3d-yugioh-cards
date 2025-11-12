@@ -2,6 +2,7 @@ import imagesLoaded from "imagesloaded";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "@studio-freight/lenis";
+import { useImageLoader } from "./utils";
 
 const lenis = new Lenis()
 lenis.on('scroll', ScrollTrigger.update);
@@ -227,23 +228,23 @@ ScrollTrigger.create({
 
 
 // Preload Images
-const progressBar = document.querySelector('.progress-bar');
+const loader = document.querySelector('#loader');
 
-imagesLoaded(document.querySelector('img'))
-  .on('progress', (instance, image) => {
-    console.log('One image finished (loaded or failed):', image.img.src);
-    console.log('Is loaded?', image.isLoaded);
-    const progress = instance.progressedCount / instance.images.length;
-    console.log('Progress:', progress);
-    progressBar.style.setProperty('--progress', progress);
-  })
-  .on('always', (instance) => {
+await useImageLoader('img', {
+  background: true,
+  onProgress: (progress) => {
+    console.log('加载进度：', progress);
+    loader.style.setProperty('--progress', progress);
+  },
+  onComplete: () => {
+    console.log('所有图片加载完成！');
     setTimeout(() => {
-      document.querySelector('#loader').remove();
+      loader.remove();
     }, 300);
-    console.log('All images done!');
-    console.log('Total:', instance.images.length);
-  });
+  },
+});
+
+// 图片全部加载完成的后续操作
 
 
 
