@@ -1,5 +1,7 @@
 import { gsap } from "gsap";
 import VanillaTilt from 'vanilla-tilt';
+import { vol4 } from '@/constants/data';
+import { useImageLoader } from "@/utils";
 
 const init = () => {
   const debug = false;
@@ -118,9 +120,6 @@ function entranceAnimation() {
   );
 }
 
-import { vol4 } from '@/constants/data';
-import { useImageLoader } from "../src/utils";
-
 function bindEvent() {
   let currentCardIdx = null;
 
@@ -209,4 +208,5 @@ VanillaTilt.init(document.querySelectorAll('.container'), {
   glare: true,
   "max-glare": 0.5
 });
+
 init();
